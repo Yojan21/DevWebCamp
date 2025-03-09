@@ -428,6 +428,12 @@ h3 {
   border-bottom-left-radius: 0;
   border-left: none;
 }
+.formulario_texto {
+  margin-top: 3rem;
+}
+.formulario_imagen {
+  max-width: 20rem;
+}
 .formulario_listado {
   margin: 0;
   padding: 0;
@@ -875,5 +881,50 @@ h3 {
 .dashboard_formulario {
   width: min(95%, 80rem);
   margin: 0 auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table_thead {
+  background-color: #1E293B;
+  color: #FFFFFF;
+}
+.table_th {
+  padding: 1rem;
+  text-align: left;
+}
+.table_th:nth-last-of-type(1) {
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+.table_th:first-of-type {
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+.table_tr:nth-child(even) {
+  background-color: #F8FAFC;
+}
+.table_td, .table_td-acciones {
+  padding: 1.5rem 1rem;
+}
+.table_td-acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
+  align-items: center;
+}
+.table_accion {
+  all: unset;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+.table_accion-editar {
+  color: #007df4;
+}
+.table_accion-eliminar {
+  color: rgb(169, 0, 0);
 }
 /*# sourceMappingURL=app.css.map */

@@ -1,3 +1,6 @@
+<?php
+$descripcion = 'Interfaz para el footer del layout de usuario';
+?>
 <footer class="footer">
     <div class="footer_grid">
         <div class="footer_contenido">

@@ -1,3 +1,6 @@
+<?php
+$descripcion = 'Interfaz para el header del layout de usuario';
+?>
 <header class="header">
     <div class="header_contenedor">
         <nav class="header_navegacion">

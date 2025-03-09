@@ -1,3 +1,6 @@
+<?php
+$descripcion = 'Interfaz para el sidebar del layout de admin';
+?>
 <aside class="dashboard_sidebar">
     <nav class="dashboard_menu">
 

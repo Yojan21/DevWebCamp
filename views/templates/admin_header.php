@@ -1,3 +1,6 @@
+<?php
+$descripcion = 'Interfaz para el header del layout de admin';
+?>
 <header class="dashboard_header">
     <div class="dashboard_header-grid">
         <a href="/">
