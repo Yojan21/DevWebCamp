@@ -1,3 +1,7 @@
+<?php
+$descripcion = 'Interfaz del layout para el usuario ';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

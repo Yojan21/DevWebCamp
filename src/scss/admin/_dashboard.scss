@@ -1,0 +1,111 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+@use "sass:color"; 
+
+.dashboard{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: v.$gris-claro;
+
+    &_header{
+        background-color: v.$gris-oscuro;
+        padding: 2rem;
+    }
+
+    &_header-grid{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        @include m.tablet{
+            flex-direction: row;
+            justify-content: space-between
+        }
+    }
+    &_logo{
+        @include m.texto_fluido(2rem, 3rem);
+        @include m.logo;
+    }
+    &_form{
+        display: flex;
+        justify-content: center;
+    }
+    &_submit-logout{
+        @include m.enlace;
+    }
+    &_grid{
+        display: flex;
+        flex: 1;
+        overflow-y: auto;
+    }
+    &_sidebar{
+        background-color: color.adjust(v.$gris-oscuro, $lightness: 10%);
+        width: 14rem;
+    }
+    &_menu{
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+    &_enlace{
+        color: color.adjust(v.$gris-oscuro, $lightness: 40%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+        transition: 300ms background-color ease-in-out, 300ms color ease, 300ms border-radius ease-in-out;
+
+        &-actual,
+        &:hover{
+            background-color: color.adjust(v.$gris-oscuro, $lightness: 20%);
+            color: v.$blanco;
+            border-radius: 1rem;
+        }
+    }
+    &_icono{
+        font-size: 2rem;
+    }
+    &_menu-texto{
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        font-weight: v.$bold;
+        margin-top: .5rem;
+    }
+    &_contenido{
+        padding: 1rem 1rem 3rem 1rem;
+        width: 100%;
+        overflow-y: scroll;
+        @include m.tablet{
+            padding: 1rem 5rem 3rem 5rem;
+        }
+    }
+
+    &_contenedor-boton{
+        @include m.tablet{
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+    &_boton{
+        text-transform: uppercase;
+        font-size: 1.4rem;
+        margin-bottom: 5rem;
+        @include m.boton(v.$azul, v.$blanco);
+        @include m.tablet{
+            width: auto;
+        }
+    }
+
+    &_contenedor{
+        @include m.shadow;
+        background-color: v.$blanco;
+        padding: 2rem;
+        border-radius: 1rem;
+    }
+    &_formulario{
+        @extend .dashboard_contenedor;
+        @include m.contenedor_md;
+    }
+}
