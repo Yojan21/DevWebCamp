@@ -53,3 +53,7 @@ $descripcion = 'Interfaz para listar ponentes o conferencistas';
         <p class="text-center">Aún no hay Ponentes</p>
     <?php } ?>
 </div>
+
+<div class="dashboard_paginacion">
+    <?php echo $paginacion; ?>
+</div>

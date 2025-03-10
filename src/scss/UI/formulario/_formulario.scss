@@ -45,10 +45,12 @@
         font-size: 1.8rem;
         color: rgba(v.$negro, .8);
     }
-    &_input{
+    &_input,
+    &_select{
         padding: 1rem;
         border: 1px solid color.adjust(v.$gris-claro, $lightness: -20%);
         border-radius: .5rem;
+        width: 95%;
         &:hover{
             border: 2px solid v.$azul;
         }
@@ -62,6 +64,10 @@
             border-bottom-left-radius: 0; 
             border-left: none
         }
+    }
+    &_radio{
+        display: flex;
+        gap: 2rem;
     }
     &_texto{
         margin-top: 3rem;

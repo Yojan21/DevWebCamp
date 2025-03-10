@@ -81,6 +81,10 @@
             padding: 1rem 5rem 3rem 5rem;
         }
     }
+    &_paginacion{
+        display: flex;
+        justify-content: flex-end;
+    }
 
     &_contenedor-boton{
         @include m.tablet{
@@ -103,6 +107,7 @@
         background-color: v.$blanco;
         padding: 2rem;
         border-radius: 1rem;
+        max-width: 100%
     }
     &_formulario{
         @extend .dashboard_contenedor;
