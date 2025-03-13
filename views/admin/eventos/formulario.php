@@ -24,8 +24,7 @@ $descripcion = 'Interfaz de formulario para crear conferencias y Workshops';
             id="descripcion"
             name="descripcion"
             placeholder="Descripción del Evento"
-            value="<?php echo $evento->descripcion ?? ''; ?>"
-        ></textarea>
+        ><?php echo $evento->descripcion ?? ''; ?></textarea>
     </div>
 
     <div class="formulario_campo">
@@ -50,11 +49,12 @@ $descripcion = 'Interfaz de formulario para crear conferencias y Workshops';
                         id="<?php echo strtolower($dia->nombre);?>"
                         name="dia"
                         value="<?php echo $dia->id; ?>"
+                        <?php echo ($evento->dia_id === $dia->id) ? 'checked' : ''; ?>
                     >
                 </div>
             <?php endforeach;?>
         </div>
-        <input type="hidden" name="dia_id" value="">
+        <input type="hidden" name="dia_id" value="<?php echo $evento->dia_id; ?>">
     </div>
 
     <div class="formulario_campo" id="horas">
@@ -65,7 +65,7 @@ $descripcion = 'Interfaz de formulario para crear conferencias y Workshops';
                 <li data-hora-id="<?php echo $hora->id ?>" class="horas_hora horas_hora-deshabilitada"><?php echo $hora->hora ?></li>
             <?php endforeach; ?>
         </ul>
-        <input type="hidden" name="hora_id" value="">
+        <input type="hidden" name="hora_id" value="<?php echo $evento->hora_id; ?>">
     </div>
 
 </fieldset>
@@ -81,7 +81,7 @@ $descripcion = 'Interfaz de formulario para crear conferencias y Workshops';
                 placeholder="Buscar ponente"
             >
             <ul class="listado-ponentes" id="listado-ponentes"></ul>
-            <input type="hidden" name="ponente_id" value="">
+            <input type="hidden" name="ponente_id" value="<?php echo $evento->ponente_id; ?>">
         </div>
 
         <div class="formulario_campo">

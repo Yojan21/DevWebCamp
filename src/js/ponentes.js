@@ -10,12 +10,31 @@
         obtenerPonentes();
         ponentesInput.addEventListener('input' , buscarPonentes);
 
+        if(ponenteHidden.value){
+            (async() => {
+                const ponente = await obtenerPonente(ponenteHidden.value);
+                
+                //insertar en el HTML
+                const ponenteDom = document.createElement('LI');
+                ponenteDom.classList.add('listado-ponentes_ponente', 'listado-ponentes_ponente-seleccionado');
+                ponenteDom.textContent = `${ponente.nombre} ${ponente.apellido}`;
+                listadoPonentes.appendChild(ponenteDom);
+            })();
+        }
+
         async function obtenerPonentes(){
             const url = `/api/ponentes`;      
             const respuesta = await fetch(url);        
             const resultado = await respuesta.json();
             
             formatearPonentes(resultado);
+        }
+
+        async function obtenerPonente(id){
+            const url = `/api/ponente?id=${id}`;
+            const respuesta = await fetch(url);
+            const resultado = await respuesta.json();
+            return resultado;
         }
 
         function formatearPonentes(arrayPonentes = []){

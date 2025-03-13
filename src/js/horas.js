@@ -1,10 +1,6 @@
 (function(){
     let horas = document.querySelector('#horas');
     if(horas){
-        let busqueda ={
-            categoria_id: '',
-            dia: ''
-        }
         
         let categoria = document.querySelector('[name="categoria_id"]');
         let dias = document.querySelectorAll('[name="dia"]');
@@ -12,6 +8,26 @@
         let inputHiddenHora = document.querySelector('[name="hora_id"]');
         categoria.addEventListener('change', terminoBusqueda);
         dias.forEach(dia => dia.addEventListener('change', terminoBusqueda));
+
+        //Se coloca aca para que al entrar al view de editar se muestre el valor actual
+        let busqueda ={
+            categoria_id: +categoria.value || '',
+            dia: +inputHiddenDia.value || ''
+        }
+
+        if(!Object.values(busqueda).includes('')){
+            (async() => {
+                await buscarEventos();
+
+                //Resaltar la hora actual
+                const id = inputHiddenHora.value;
+                const horaSeleccionada = document.querySelector(`[data-hora-id="${id}"]`);
+
+                horaSeleccionada.classList.remove('horas_hora-deshabilitada');
+                horaSeleccionada.classList.add('horas_hora-seleccionada');
+                horaSeleccionada.onclick = seleccionarHora;
+            })();
+        }
 
         function terminoBusqueda(e){
             busqueda[e.target.name] = e.target.value;
