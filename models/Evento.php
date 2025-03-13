@@ -12,6 +12,7 @@ class Evento extends ActiveRecord {
     public $disponibles;
     public $categoria_id;
     public $dia_id;
+    public $hora_id;
     public $ponente_id;
 
     public function __construct($args = []){
@@ -21,6 +22,7 @@ class Evento extends ActiveRecord {
         $this->disponibles = $args['disponibles'] ?? '';
         $this->categoria_id = $args['categoria_id'] ?? '';
         $this->dia_id = $args['dia_id'] ?? '';
+        $this->hora_id = $args['hora_id'] ?? '';
         $this->ponente_id = $args['ponente_id'] ?? '';
     }
 

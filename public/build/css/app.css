@@ -514,18 +514,29 @@ h3 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-.horas_hora {
+.horas_hora, .horas_hora-deshabilitada {
   color: #007df4;
   border: 1px solid #007df4;
   border-radius: 1rem;
   padding: 1rem;
   text-align: center;
 }
-.horas_hora:hover {
+.horas_hora:hover, .horas_hora-deshabilitada:hover, .horas_hora-seleccionada {
   cursor: pointer;
   color: #FFFFFF;
   background-color: #007df4;
   font-weight: 700;
+}
+.horas_hora-deshabilitada {
+  border: 1px solid #64748B;
+  color: #64748B;
+  opacity: 0.5;
+}
+.horas_hora-deshabilitada:hover {
+  cursor: not-allowed;
+  background-color: transparent;
+  color: #64748B;
+  font-weight: 400;
 }
 
 .header {
@@ -1013,5 +1024,28 @@ h3 {
   .paginacion_enlace-actual {
     display: inline;
   }
+}
+
+.listado-ponentes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(1, 1fr);
+}
+.listado-ponentes_ponente, .listado-ponentes_ponente-seleccionado {
+  color: #007df4;
+  border: 1px solid #007df4;
+  padding: 1rem;
+  border-radius: 1rem;
+  text-align: center;
+}
+.listado-ponentes_ponente:hover, .listado-ponentes_ponente-seleccionado:hover {
+  cursor: pointer;
+}
+.listado-ponentes_ponente-seleccionado {
+  background-color: #007df4;
+  color: #FFFFFF;
 }
 /*# sourceMappingURL=app.css.map */

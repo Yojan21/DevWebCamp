@@ -54,16 +54,18 @@ $descripcion = 'Interfaz de formulario para crear conferencias y Workshops';
                 </div>
             <?php endforeach;?>
         </div>
+        <input type="hidden" name="dia_id" value="">
     </div>
 
     <div class="formulario_campo" id="horas">
         <label class="formulario_label">Seleccionar Hora</label>
 
-        <ul class="horas">
+        <ul id="horas" class="horas">
             <?php foreach ($horas as $hora): ?>
-                <li class="horas_hora"><?php echo $hora->hora ?></li>
+                <li data-hora-id="<?php echo $hora->id ?>" class="horas_hora horas_hora-deshabilitada"><?php echo $hora->hora ?></li>
             <?php endforeach; ?>
         </ul>
+        <input type="hidden" name="hora_id" value="">
     </div>
 
 </fieldset>
@@ -78,6 +80,8 @@ $descripcion = 'Interfaz de formulario para crear conferencias y Workshops';
                 id="ponentes"
                 placeholder="Buscar ponente"
             >
+            <ul class="listado-ponentes" id="listado-ponentes"></ul>
+            <input type="hidden" name="ponente_id" value="">
         </div>
 
         <div class="formulario_campo">

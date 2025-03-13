@@ -15,11 +15,26 @@
         border-radius: 1rem;
         padding: 1rem;
         text-align: center;
-        &:hover{
+        &:hover,
+        &-seleccionada{
             cursor: pointer;
             color: v.$blanco;
             background-color: v.$azul;
             font-weight: v.$bold;
+        }
+
+        &-deshabilitada{
+            @extend .horas_hora;
+            border: 1px solid v.$gris;
+            color: v.$gris;
+            opacity: .5;
+
+            &:hover{
+                cursor: not-allowed;
+                background-color: transparent;
+                color: v.$gris;
+                font-weight: v.$regular;
+            }
         }
     }
 }
