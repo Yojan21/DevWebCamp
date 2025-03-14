@@ -4,8 +4,16 @@ $descripcion = 'Interfaz para el header del layout de usuario';
 <header class="header">
     <div class="header_contenedor">
         <nav class="header_navegacion">
+
+        <?php if(is_auth()){ ?>
+            <a class="header_enlace" href="<?php echo is_admin() ? '/admin/dashboard' : '/finalizar-registro'; ?>">Administrar</a>
+            <form action="/logout" method="POST" class="header_form">
+                <input class="header_submit" type="submit" value="Cerrar Sesión">
+            </form>
+        <?php }else { ?>
             <a class="header_enlace" href="/registro">Registro</a>
             <a class="header_enlace" href="/login">Iniciar Sesión</a>
+        <?php } ?>
         </nav>
 
         <div class="header_contenido">
@@ -26,10 +34,10 @@ $descripcion = 'Interfaz para el header del layout de usuario';
             <h2 class="barra_logo">&#60;DevWebCamp/></h2>
         </a>
         <nav class="navegacion">
-            <a href="/devwebcamp" class="navegacion_enlace">Evento</a>
-            <a href="/paquetes" class="navegacion_enlace">Paquetes</a>
-            <a href="/workshops" class="navegacion_enlace">Workshops / Conferencias</a>
-            <a href="/registro" class="navegacion_enlace">Comprar Pase</a>
+            <a href="/devwebcamp" class="navegacion_enlace <?php echo pagina_actual('/devwebcamp') ? 'navegacion_enlace-actual' : '' ?>">Evento</a>
+            <a href="/paquetes" class="navegacion_enlace <?php echo pagina_actual('/paquetes') ? 'navegacion_enlace-actual' : '' ?>">Paquetes</a>
+            <a href="/workshops" class="navegacion_enlace <?php echo pagina_actual('/workshops') ? 'navegacion_enlace-actual' : '' ?>">Workshops / Conferencias</a>
+            <a href="/registro" class="navegacion_enlace <?php echo pagina_actual('/registro') ? 'navegacion_enlace-actual' : '' ?>">Comprar Pase</a>
         </nav>
     </div>
 </div>
