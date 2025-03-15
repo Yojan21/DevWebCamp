@@ -113,4 +113,8 @@
         @extend .dashboard_contenedor;
         @include m.contenedor_md;
     }
+
+    &_grafica{
+        @include m.contenedor_sm;
+    }
 }
