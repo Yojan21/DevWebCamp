@@ -52,7 +52,10 @@
         flex: 0 0 40%;
         position: -webkit-sticky;
         position: sticky;
-        top: 3rem;
+        top: 3rem; 
+        &_login{
+            position: relative;
+        }
     }
 
     &_heading{
@@ -81,6 +84,9 @@
         &:hover{
             cursor: pointer;
         }
+    }
+    &_texto{
+        text-align: center;
     }
 
     &_regalo{

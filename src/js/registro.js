@@ -11,6 +11,8 @@ import Swal from 'sweetalert2'
         const formularioRegistro = document.querySelector('#registro');
         formularioRegistro.addEventListener('submit', submitFormulario);
 
+        mostrarEventos();
+
 
         function seleccionarEvento(e){
             if(eventos.length < 5){
@@ -60,6 +62,11 @@ import Swal from 'sweetalert2'
                     eventoDOM.appendChild(botonEliminar);
                     resumen.appendChild(eventoDOM);
                 });
+            }else{
+                const noRegistro = document.createElement('P');
+                noRegistro.textContent = 'No hay eventos, agrega hasta 5 del lado izquierdo';
+                noRegistro.classList.add('registro_texto');
+                resumen.appendChild(noRegistro);
             }
         }
 
@@ -76,12 +83,12 @@ import Swal from 'sweetalert2'
             mostrarEventos();
         }
 
-        function submitFormulario(e){
+        async function submitFormulario(e){
             e.preventDefault();
             //Obtener el regalo
             const regaloId = document.querySelector('#regalo').value;
             const eventosId = eventos.map(evento => evento.id);
-            
+
             if(eventosId.length === 0 || regaloId === ''){
                 Swal.fire({
                     title: 'Error',
@@ -93,7 +100,35 @@ import Swal from 'sweetalert2'
                 return;
             }
 
-            console.log('Registrando');
+            //Objeto de FormData
+
+            const datos = new FormData();
+            datos.append('eventos', eventosId);
+            datos.append('regalo_id', regaloId);
+
+            const url = '/finalizar_registro/conferencias';
+            const respuesta = await fetch(url, {
+                method: 'POST',
+                body: datos
+            });
+            const resultado = await respuesta.json();
+            
+            if(resultado.resultado){
+                Swal.fire({
+                    title: 'Registro Exitoso',
+                    text: 'Tus conferencias se han almacena y tu registro fue exitoso',
+                    icon: 'success',
+                    confirmButtonText: 'OK',
+                }).then(() => location.href = `/boleto?id=${resultado.token}`);
+            }else{
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Se ha presentado un problema en tu registro',
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                    timer: 5000
+                }).then(() => location.reload());
+            }
         }
     }
 })();

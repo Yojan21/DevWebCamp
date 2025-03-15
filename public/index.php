@@ -76,6 +76,7 @@ $router->get('/finalizar_registro', [RegistroController::class, 'crear']);
 $router->post('/finalizar_registro/gratis', [RegistroController::class, 'gratis']);
 $router->post('/finalizar_registro/pagar', [RegistroController::class, 'pagar']);
 $router->get('/finalizar_registro/conferencias', [RegistroController::class, 'conferencias']);
+$router->post('/finalizar_registro/conferencias', [RegistroController::class, 'conferencias']);
 
 
 //Boleto virtual

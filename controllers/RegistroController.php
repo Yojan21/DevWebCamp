@@ -12,6 +12,7 @@ use Model\Ponente;
 use Model\Usuario;
 use Model\Registro;
 use Model\Categoria;
+use Model\EventosRegistros;
 
 class RegistroController{
     public static function crear(Router $router){
@@ -24,6 +25,11 @@ class RegistroController{
         
         if(isset($registro) && $registro->paquete_id === "3"){
             header('Location: /boleto?id=' . urlencode($registro->token));
+        }
+
+        //Verificar si el usuario y pago y redireccionar hacia el boleto presencial
+        if(isset($registro) && $registro->paquete_id === "1"){
+            header('Location: finalizar_registro/conferencias');
         }
     
         $router->render('registro/crear', [
@@ -48,12 +54,12 @@ class RegistroController{
             $token = substr(md5(uniqid(rand(), true)), 0, 8);
 
             //Crear Registro
-            $datos = array(
+            $datos = [
                 'paquete_id' => 3,
                 'pago_id' => '',
                 'token' => $token,
                 'usuario_id' => $_SESSION['id']
-            );
+            ];
 
             $registro = new Registro($datos);
             $resultado = $registro->guardar();
@@ -129,8 +135,14 @@ class RegistroController{
         //Validar que el usuario tenga el plan presencial
         $usuario_id = $_SESSION['id'];
         $registro = Registro::where('usuario_id', $usuario_id);
+
         if($registro->paquete_id !== "1"){
             header('Location: /login');
+        }
+
+        //Redireccionar a boleto virtual en caso de ya haber finalizado el registro
+        if(isset($registro->regalo_id)){
+            header('Location: /boleto?id=' . urlencode($registro->token));
         }
 
         $eventos = Evento::ordenar('hora_id', 'ASC');
@@ -160,6 +172,71 @@ class RegistroController{
         }
 
         $regalos = Regalo::all('ASC');
+
+        //Manejando el registro mediante $_POST
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            //Verificar que el usuario este autenticado
+            if(!is_auth()){
+                header('Location: /login');
+            }
+
+            $eventos = explode(',', $_POST['eventos']);
+            
+            if(empty($eventos)){
+                echo json_encode(['resultado' => false]);
+                return;
+            }
+
+            //Obtener el registro de usuario
+            $registro = Registro::where('usuario_id', $_SESSION['id']);
+            if(!isset($registro) || $registro->paquete_id !== "1"){
+                echo json_encode(['resultado' => false]);
+                return;
+            }
+
+            $eventos_array = [];
+            //Validar la disponibilidad de los eventos seleccionados
+            foreach($eventos as $evento_id){
+                $evento = Evento::find($evento_id);
+                //Comprobar que el evento exista
+                if(!isset($evento) || $evento->disponibles === "0"){
+                    echo json_encode(['resultado' => false]);
+                    return;
+                }
+                $eventos_array[] = $evento;
+            }
+
+            foreach($eventos_array as $evento){
+                $evento->disponibles -= 1;
+                $evento->guardar();
+
+                //Almacenar el registro
+                $datos = [
+                    'evento_id' => (int) $evento->id,
+                    'registro_id' => (int) $registro->id
+                ];
+
+                $registro_usuario = new EventosRegistros($datos);
+                $registro_usuario->guardar();
+            }
+
+            //Almacenar el regalo
+            $registro->sincronizar(['regalo_id' => $_POST['regalo_id']]);
+            $resultado = $registro->guardar();
+
+            if($resultado){
+                echo json_encode([
+                    'resultado' => $resultado,
+                    'token' => $registro->token
+                ]);
+            }else{
+                echo json_encode(['resultado' => false]);
+            }
+
+            return;
+            
+        }
+
 
     
         $router->render('registro/conferencias', [

@@ -1636,6 +1636,9 @@ h3 {
     position: sticky;
     top: 3rem;
   }
+  .registro_login {
+    position: relative;
+  }
 }
 .registro_heading {
   margin: 0 0 3rem 0;
@@ -1660,6 +1663,9 @@ h3 {
 }
 .registro_eliminar:hover {
   cursor: pointer;
+}
+.registro_texto {
+  text-align: center;
 }
 .registro_regalo {
   margin-top: 3rem;

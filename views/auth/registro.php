@@ -2,7 +2,7 @@
 $descripcion = 'Interfaz para crear cuenta ';
 ?>
 
-<main class="registro">
+<main class="registro registro_login">
     <h2 class="registro_heading"><?php echo $titulo; ?></h2>
     <p class="registro_descripcion">Registra tu cuenta</p>
 
