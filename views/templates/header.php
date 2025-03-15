@@ -6,7 +6,7 @@ $descripcion = 'Interfaz para el header del layout de usuario';
         <nav class="header_navegacion">
 
         <?php if(is_auth()){ ?>
-            <a class="header_enlace" href="<?php echo is_admin() ? '/admin/dashboard' : '/finalizar-registro'; ?>">Administrar</a>
+            <a class="header_enlace" href="<?php echo is_admin() ? '/admin/dashboard' : '/finalizar_registro'; ?>">Administrar</a>
             <form action="/logout" method="POST" class="header_form">
                 <input class="header_submit" type="submit" value="Cerrar Sesión">
             </form>

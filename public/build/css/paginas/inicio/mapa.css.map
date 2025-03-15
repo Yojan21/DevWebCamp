@@ -1,0 +1,1 @@
+{"version":3,"sources":["paginas/inicio/mapa.scss"],"names":[],"mappings":"AAAA;EACI;EACA;;AAEA;EACI;EACA;;AAEJ;EACI;EACA","file":"mapa.css","sourcesContent":[".mapa{\n    height: 45rem;\n    margin-top: 5rem;\n\n    &_heading{\n        margin: 0;\n        text-align: left;\n    }\n    &_texto{\n        font-size: 1.8rem;\n        margin: 0;\n    }\n}"]}

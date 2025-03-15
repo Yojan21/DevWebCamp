@@ -116,19 +116,22 @@
             font-family: "Font Awesome 6 Brands";
         }
 
-        &[href*="https://www.facebook.com"]::before {
+        &[href*="facebook.com"]::before {
             content: "\f39e";
         }
-        &[href*="https://github.com/Yojan21"]::before {
+        &[href*="github.com"]::before {
             content: "\f09b";
         }
-        &[href*="https://www.instagram.com/yojanromero_/"]::before {
+        &[href*="instagram.com"]::before {
             content: "\f16d";
         }
-        &[href*="https://www.linkedin.com"]::before {
+        &[href*="www.linkedin.com"]::before {
             content: "\f0e1";
         }
-        &[href*="https://x.com/RomeroYojan_"]::before {
+        &[href*="twitter.com"]::before {
+            content: "\f099";
+        }
+        &[href*="x.com"]::before {
             content: "\f099";
         }
     }

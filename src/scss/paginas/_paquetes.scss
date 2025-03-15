@@ -3,7 +3,6 @@
 @use "sass:color"; 
 
 .paquetes{
-    
     &_grid{
         @include m.contenedor;
         @include m.grid(1, 3rem);
@@ -11,6 +10,11 @@
             @include m.grid(3, 3rem);
             align-items: start
         }
+    }
+
+    &_submit{
+        margin-top: 3rem;
+        @include m.boton(v.$azul, v.$blanco);
     }
 }
 

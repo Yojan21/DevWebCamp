@@ -1,0 +1,102 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+@use "sass:color"; 
+
+.eventos-registro{
+    @include m.contenedor;
+    @include m.tablet{
+        display: flex;
+        align-items: flex-start;
+        gap: 2rem;
+    }
+
+    &_listado{
+        @include m.tablet{
+            flex: 0 0 60%
+        }
+    }
+
+    &_grid{
+        @include m.grid(1, 3rem);
+        @include m.tablet{
+            @include m.grid(2, 3rem);
+        }
+    }
+
+    &_heading{
+        &-workshops,
+        &-conferencias{
+            white-space: nowrap;
+            @include m.texto-fluido(2rem, 5rem);
+        }
+        &-conferencias{
+            color: v.$azul;
+        }
+        &-workshops{
+            color: v.$secundario;
+            margin-top: 5rem;
+        }
+    }
+
+    &_fecha{
+        margin: 6rem 3rem 0 0;
+    }
+}
+
+.registro{
+    background-color: color.adjust(v.$gris, $lightness: 30%);
+    padding: 3rem;
+    border-radius: 1rem;
+
+    @include m.tablet{
+        flex: 0 0 40%;
+        position: -webkit-sticky;
+        position: sticky;
+        top: 3rem;
+    }
+
+    &_heading{
+        margin: 0 0 3rem 0;
+    }
+
+    &_evento{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        &:nth-child(even){
+            background-color: color.adjust(v.$gris, $lightness: 25%);
+        }
+    }
+
+    &_nombre{
+        font-size: 2rem;
+        font-weight: v.$bold;
+        margin: 0;
+    }
+
+    &_eliminar{
+        all: unset;
+        color: v.$rojo;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+
+    &_regalo{
+        margin-top: 3rem;
+    }
+    &_label{
+        display: block;
+        font-size: 2.2rem;
+        font-weight: v.$bold;
+        margin-bottom: 1rem;
+    }
+    &_select{
+        width: 100;
+        background-color: v.$blanco;
+        border: 1px solid v.$gris;
+        border-radius: .5rem;
+        padding: 1rem;
+    }
+}

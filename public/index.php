@@ -7,10 +7,11 @@ use Controllers\APIEventos;
 use Controllers\APIPonentes;
 use Controllers\AuthController;
 use Controllers\EventosController;
+use Controllers\PaginasController;
 use Controllers\RegalosController;
 use Controllers\PonentesController;
+use Controllers\RegistroController;
 use Controllers\DashboardController;
-use Controllers\PaginasController;
 use Controllers\RegistradosController;
 
 $router = new Router();
@@ -68,6 +69,17 @@ $router->get('/', [PaginasController::class, 'index']);
 $router->get('/devwebcamp', [PaginasController::class, 'evento']);
 $router->get('/paquetes', [PaginasController::class, 'paquetes']);
 $router->get('/workshops', [PaginasController::class, 'conferencias']);
+$router->get('/404', [PaginasController::class, 'error']);
+
+//Registro de Usuarios
+$router->get('/finalizar_registro', [RegistroController::class, 'crear']);
+$router->post('/finalizar_registro/gratis', [RegistroController::class, 'gratis']);
+$router->post('/finalizar_registro/pagar', [RegistroController::class, 'pagar']);
+$router->get('/finalizar_registro/conferencias', [RegistroController::class, 'conferencias']);
+
+
+//Boleto virtual
+$router->get('/boleto', [RegistroController::class, 'boleto']);
 
 
 $router->comprobarRutas();
